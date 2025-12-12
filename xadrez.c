@@ -61,20 +61,18 @@ void moveRook(int n) {
 /**
  * @brief Função para movimentar o Bispo.
  *
- * Usa recursividade com a condição n==0 como ponto de parada para empilhar as funções.
+ * Usa dois for loops aninhados para controlar a movimentação
  *
  * @return void
  */
 void moveBishop(int n) {
 
-    if(n==0){
-        //Separador para melhorar a legibilidade no console ao fim da movimentação
-        printf("\n");
-        return;
+    for (int vertical = 0; vertical < n; vertical++) {  // Loop externo: vertical (Cima)
+        for (int horizontal = 0; horizontal < 1; horizontal++) {  // Loop interno: horizontal (Direita) 
+            printf("Cima, Direita\n");
+        }
     }
-
-    printf("Cima, Direita\n");
-    moveBishop(n-1);
+    printf("\n");
 
 }
 
