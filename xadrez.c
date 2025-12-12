@@ -12,21 +12,22 @@ void moveKnight();
 
 int main() {
 
+    int rookMoves = 5;
+    int bishopMoves = 5;
+    int queenMoves = 8;
+
     printf("TORRE\n");
-    moveRook();
+    moveRook(rookMoves);
 
     printf("BISPO\n");
-    moveBishop();
+    moveBishop(bishopMoves);
 
     printf("RAINHA\n");
-    moveQueen();
+    moveQueen(queenMoves);
 
     printf("CAVALO\n");
     moveKnight();
 
-    // Nível Aventureiro - Movimentação do Cavalo
-    // Sugestão: Utilize loops aninhados para simular a movimentação do Cavalo em L.
-    // Um loop pode representar a movimentação horizontal e outro vertical.
 
     // Nível Mestre - Funções Recursivas e Loops Aninhados
     // Sugestão: Substitua as movimentações das peças por funções recursivas.
@@ -41,36 +42,40 @@ int main() {
 /**
  * @brief Função para movimentar a Torre
  *
- * Usa um laço while para controlar a movimentação para a direita
+ * Usa recursividade para exibir a movimentação. 
+ * A condição de parada é avaliada no início e equivale a n == 0 (padrão early return)
  *
  * @return void
  */
-void moveRook() {
-    int n = 5;
+void moveRook(int n) {
 
-    while(n > 0) {
-        printf("Direita \n");
-        n--;
-    }
-    printf("\n");
+    if(n == 0) {
+        printf("\n");
+        return;
+    }   
+
+   printf("Direita\n");
+   moveRook(--n);
 }
 
 /**
  * @brief Função para movimentar o Bispo.
  *
- * Usa um laço do while para controlar a movimentação na diagonal
+ * Usa recursividade com a condição n==0 como ponto de parada para empilhar as funções.
  *
  * @return void
  */
-void moveBishop() {
-    int n = 5;
+void moveBishop(int n) {
 
-    do {
-        printf("Cima, Direita\n");
-        n--;
-    } while (n > 0);
+    if(n==0){
+        //Separador para melhorar a legibilidade no console ao fim da movimentação
+        printf("\n");
+        return;
+    }
 
-    printf("\n");
+    printf("Cima, Direita\n");
+    moveBishop(n-1);
+
 }
 
 /**
@@ -80,14 +85,15 @@ void moveBishop() {
  *
  * @return void
  */
-void moveQueen() {
+void moveQueen(int n) {
 
-    int n = 8;
-    for(int i=0; i<n; i++) {
-        printf("Esquerda\n");
+    if(n==0) {  
+        printf("\n");
+        return;
     }
-
-    printf("\n");
+ 
+    printf("Esquerda\n");
+    moveQueen(n-1);
 }
 
 /**
@@ -100,15 +106,16 @@ void moveQueen() {
  */
 void moveKnight(){
     
-    int downMovements = 2;
-    int leftMovements = 1;
+    int upMovements = 2;
+    int rightMovements = 1;
 
-    while(leftMovements > 0) {
-        for(int i=0; i<downMovements; i++) {
-            printf("Baixo, ");
+    for(int i=0; i<upMovements; i++) {
+
+        printf("Cima, ");
+        if(i == 0) continue;
+        for(int j=0; j<rightMovements; j++) {
+            printf("Direita");
         }
-        printf("Esquerda");
-        leftMovements--;
     }
 
     printf("\n");
