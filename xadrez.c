@@ -8,6 +8,7 @@
 void moveRook();
 void moveBishop();
 void moveQueen();
+void moveKnight();
 
 int main() {
 
@@ -16,9 +17,12 @@ int main() {
 
     printf("BISPO\n");
     moveBishop();
-    
+
     printf("RAINHA\n");
     moveQueen();
+
+    printf("CAVALO\n");
+    moveKnight();
 
     // Nível Aventureiro - Movimentação do Cavalo
     // Sugestão: Utilize loops aninhados para simular a movimentação do Cavalo em L.
@@ -81,6 +85,30 @@ void moveQueen() {
     int n = 8;
     for(int i=0; i<n; i++) {
         printf("Esquerda\n");
+    }
+
+    printf("\n");
+}
+
+/**
+ * @brief Função para movimentar o Cavalo.
+ *
+ * Usa um laço while para controlar o movimento em uma direção 
+ * e um laço for para controlar os dois movimentos na direção contrária
+ *
+ * @return void
+ */
+void moveKnight(){
+    
+    int downMovements = 2;
+    int leftMovements = 1;
+
+    while(leftMovements > 0) {
+        for(int i=0; i<downMovements; i++) {
+            printf("Baixo, ");
+        }
+        printf("Esquerda");
+        leftMovements--;
     }
 
     printf("\n");
